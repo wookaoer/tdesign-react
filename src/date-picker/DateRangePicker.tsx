@@ -54,7 +54,7 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>((props,
     setCacheValue,
   } = useRange(props);
 
-  const { formatTime, formatDate, isValidDate, format } = useFormat({
+  const { formatTime, formatDate, isValidDate, format, timeFormat } = useFormat({
     mode,
     value,
     enableTimePicker,
@@ -70,7 +70,7 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>((props,
     if (popupVisible) {
       setIsSelected(false);
       setCacheValue(formatDate(value || []));
-      setTimeValue(formatTime(value || []));
+      setTimeValue(formatTime(value || [dayjs().format(timeFormat), dayjs().format(timeFormat)]));
     }
     // eslint-disable-next-line
   }, [value, popupVisible]);
